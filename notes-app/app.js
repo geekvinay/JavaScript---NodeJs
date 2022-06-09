@@ -1,6 +1,13 @@
 const yargs = require("yargs");
 const chalk = require("chalk");
-const { getNote, addNote, removeNote } = require("./notes");
+const {
+  getNote,
+  addNote,
+  removeNote,
+  listNotes,
+  readNote,
+} = require("./notes");
+
 const { describe, demand, demandOption, argv } = require("yargs");
 
 // Customise yargs version
@@ -24,7 +31,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
+  handler: (argv) => {
     addNote(argv.title, argv.body);
   },
 });
@@ -40,7 +47,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function () {
+  handler: () => {
     removeNote(argv.title);
   },
 });
@@ -49,8 +56,8 @@ yargs.command({
 yargs.command({
   command: "list",
   describe: "List all notes",
-  handler: function () {
-    console.log("Listing a note");
+  handler: () => {
+    listNotes();
   },
 });
 
@@ -58,10 +65,18 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "Read a note",
-  handler: function () {
-    console.log("Reading a note");
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    readNote(argv.title);
   },
 });
 
+// To parse the yargs we can use this method
 yargs.parse();
 // console.log(yargs.argv);

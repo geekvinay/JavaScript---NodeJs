@@ -1,6 +1,12 @@
+// ################################################################
+// #######################       Importing all the modules and requires
+// ################################################################
 const chalk = require("chalk");
 const fs = require("fs");
-const getNote = function (title, body) {};
+
+const getNotes = function () {
+  greenLog("Getting your notes....");
+};
 
 // ################################################################
 // #######################       Utility functions
@@ -35,11 +41,8 @@ function greenLog(mess) {
 
 const addNote = function (title, body) {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter(function (note) {
-    return note.title === title;
-  });
-
-  if (duplicateNotes.length === 0) {
+  const duplicateNote = notes.find((note) => note.title === title);
+  if (!duplicateNote) {
     //Adding new note to the already present notes collection
     notes.push({
       title: title,
@@ -57,6 +60,7 @@ const addNote = function (title, body) {
 // ################################################################
 // #######################       Removing a note
 // ################################################################
+
 function removeNote(title) {
   const notes = loadNotes();
   //   let flag = false;
@@ -81,8 +85,38 @@ function removeNote(title) {
   }
 }
 
+// ################################################################
+// #######################       List all Notes
+// ################################################################
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log(chalk.inverse("Your Notes"));
+  notes.forEach((element) => {
+    console.log(`\nTitle : ${element.title}`);
+    console.log(`Body : ${element.body}\n`);
+  });
+};
+
+// ################################################################
+// #######################       Read Note
+// ################################################################
+
+const readNote = (title) => {
+  const notes = loadNotes();
+  const note = notes.find((note) => note.title === title);
+
+  if (note) {
+    console.log("\n" + chalk.inverse(note.title));
+    console.log(note.body);
+  } else {
+    redLog("Note not found");
+  }
+};
+
 module.exports = {
+  getNotes,
   addNote,
-  getNote,
   removeNote,
+  listNotes,
+  readNote,
 };
