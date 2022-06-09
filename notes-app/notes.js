@@ -49,6 +49,8 @@ const addNote = function (title, body) {
       body: body,
     });
 
+    debugger;
+
     // Saving the notes to the JSON
     greenLog("New note added!");
     saveNotes(notes);
