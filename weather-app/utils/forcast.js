@@ -1,7 +1,7 @@
 const request = require("request");
 var url = `http://api.weatherstack.com/current?access_key=84b9133b8df71d6b3fbd55d7969704ce&query=`;
 
-const forecast = (data) => {
+const forcast = (data) => {
   url = url + `${data.lat},${data.long}`;
   request({ url: url, json: true }, (err, response) => {
     if (response) {
