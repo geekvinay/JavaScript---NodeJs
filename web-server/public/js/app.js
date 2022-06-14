@@ -17,7 +17,7 @@ console.log(input, search);
 
 search.addEventListener("click", (e) => {
   e.preventDefault();
-  let url = "http://localhost:3000/weather?address=";
+  let url = "/weather?address=";
   let data = input.value;
   url = url + "" + data;
   desc.innerHTML = "Loading the data from server";
