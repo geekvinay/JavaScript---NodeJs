@@ -8,11 +8,21 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="mainContent">
     {{>header}}
 
     <p>Created by {{name}}</p>
 
+    <p class="desc"></p>
+    <p class="location"></p>
+
+
     <p>{{>footer}}</p>
+    </div>
+    <form action="">
+      <input type="text" name="location" id="loc" placeholder="Location">
+      <button id="search">Search</button>  
+    </form>
     <script src="/js/app.js"></script>
   </body>
 </html>
