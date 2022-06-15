@@ -22,6 +22,23 @@ MongoClient.connect(
     }
 
     const db = client.db(databaseName);
+    // {  "_id": {    "$oid": "62a9af086a11cef0f5b11da2"  },  "name": "Vinay",  "age": 20}
+
+    // db.collection("users")
+    //   .find({ name: "Vinay" })
+    //   .count((err, count) => {
+    //     console.log(count);
+    //   });
+
+    // db.collection("users").findOne(
+    //   { _id: new ObjectId("62a9af086a11cef0f5b11da2") },
+    //   (error, user) => {
+    //     if (error) {
+    //       return console.log("User not found");
+    //     }
+    //     console.log(user);
+    //   }
+    // );
 
     // db.collection("users").insertOne(
     //   {
@@ -60,5 +77,38 @@ MongoClient.connect(
     //     console.log(result.insertedIds);
     //   }
     // );
+
+    // db.collection("tasks").findOne(
+    //   {
+    //     _id: new ObjectId("62a98044b40e7f897db5cf0b"),
+    //   },
+    //   (error, data) => {
+    //     console.log(data);
+    //   }
+    // );
+
+    // db.collection("tasks")
+    //   .find({ completed: false })
+    //   .toArray((err, users) => {
+    //     console.log(users);
+    //   });
+    // const updatePromise = db
+    //   .collection("users")
+    //   .updateOne(
+    //     {
+    //       _id: new ObjectId("62a88a324e70a55e8bd5a4f1"),
+    //     },
+    //     {
+    //       $set: {
+    //         name: "Aaron",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 );
