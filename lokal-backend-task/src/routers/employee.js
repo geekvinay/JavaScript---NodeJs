@@ -1,7 +1,9 @@
+// Requiring all the modules
 const express = require("express");
 const employeeModel = require("../model/employee");
 const router = express.Router();
 
+// Route to get all the employees
 router.get("/employees", async (req, res) => {
   try {
     const employees = await employeeModel.find({});
@@ -9,9 +11,9 @@ router.get("/employees", async (req, res) => {
   } catch (e) {}
 });
 
+// Route to create new employees
 router.post("/employees", async (req, res) => {
   const newEmployee = new employeeModel(req.body);
-
   try {
     await newEmployee.save();
     res.status(201).send(newEmployee);
@@ -20,6 +22,7 @@ router.post("/employees", async (req, res) => {
   }
 });
 
+// Searching for finding an employee with given ID
 router.get("/employees/:id", async (req, res) => {
   const searchingID = req.params.id;
   try {
@@ -33,6 +36,7 @@ router.get("/employees/:id", async (req, res) => {
   }
 });
 
+// Updating details for a given employee id
 router.put("/employees/:id", async (req, res) => {
   const searchingID = req.params.id;
   const updates = Object.keys(req.body);
@@ -51,6 +55,7 @@ router.put("/employees/:id", async (req, res) => {
   }
 });
 
+// Finding and deleting an employee details by ID
 router.delete("/employees/:id", async (req, res) => {
   const searchingID = req.params.id;
   try {
